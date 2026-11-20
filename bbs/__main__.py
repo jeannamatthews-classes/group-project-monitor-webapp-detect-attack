@@ -4,14 +4,6 @@ import bbs.users as users
 
 app = Flask(__name__)
 
-""" 
-Store posts in db as
-user (fk -> users.user), date, content
-
-Store users in db as
-user (pk), password
-"""
-
 @app.route("/")
 def main_page():
     p = posts.get_posts()
