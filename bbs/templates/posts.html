@@ -2,27 +2,20 @@
 <html>
 
 <head>
-    <title>BBS</title>
+    <title>BBS Posts</title>
 </head>
 
 <body>
     <h1>Message Board</h1>
     
-    <ul>
     {% for post in posts %}
-
         <h2>{{ post["user"]}}</h2>
         <p>{{ post["body"]}}</p>
-        <ul>
-            {% for reply in post["replies"] %}
-                <h3>{{ post["user"]}}</h2>
-                <p>{{ post["body"]}}</p>
-            {% endfor %}
-        </ul>
+        
         <hr/>
     {% endfor %}
-    </ul>
 
+    <p style="text-align: center; width: 100%"><a href="/login">Login</a></p>
 </body>
 
 </html>
