@@ -35,7 +35,9 @@ def login_page():
 def post_page():
     content = request.args.get("content")
     if content is not None:
-        user = users.get_user_cookie(request)
+        user = users.validate_user_cookie(request)
+        if user is None:
+            return redirect("/login")
         posts.create_post(user, content)
         return redirect("/")
     else:
