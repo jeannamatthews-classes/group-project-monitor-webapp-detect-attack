@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>BBS Posts</title>
+
+    <style>
+        #header > a {
+            margin-left: 10px;
+            vertical-align: text-bottom;
+            margin-top: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header" style="display: flex; flex-direction: row;">
+        <h1 style="margin-bottom: 0; margin-right: auto;">Message Board</h1>
+        <a href="/login">Login</a>
+        <a href="/post">New Post</a>
+    </div>
+    
+    <hr/>
+    {% for post in posts %}
+        <h2>{{ post["user"]}}</h2>
+        <p>{{ post["body"]}}</p>
+        
+        <hr/>
+    {% endfor %}
+</body>
+
+</html>

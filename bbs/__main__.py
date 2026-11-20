@@ -15,7 +15,7 @@ user (pk), password
 @app.route("/")
 def main_page():
     p = posts.get_posts()
-    return render_template("posts.html", posts=p)
+    return render_template("home.html", posts=p)
 
 @app.route("/login")
 def login_page():
@@ -30,5 +30,15 @@ def login_page():
             return render_template("login.html", try_again = True)
     else:
         return render_template("login.html", try_again = False)
+
+@app.route("/post")
+def post_page():
+    content = request.args.get("content")
+    if content is not None:
+        user = users.get_user_cookie(request)
+        posts.create_post(user, content)
+        return redirect("/")
+    else:
+        return render_template("post.html")
 
 app.run()

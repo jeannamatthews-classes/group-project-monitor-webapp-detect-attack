@@ -1,17 +1,6 @@
 # TODO: implement database logic
 
-posts = [
-        {"user": "foobar",
-        "body": "foo"},
-        {"user": "foobar",
-        "body": "foo"},
-        {"user": "foobar",
-        "body": "foo"},
-        {"user": "foobar",
-        "body": "foo"},
-        {"user": "foobar",
-        "body": "foo"},
-    ]
+posts = []
 
 def get_posts():
     return posts
