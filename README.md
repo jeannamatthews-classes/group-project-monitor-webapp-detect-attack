@@ -8,7 +8,7 @@ I will implement docker soon.
 
 ### Database Schema
 Store posts in db as
-id (pk), user (fk -> users.user), date, content
+id (pk), user (fk -> users.id), content
 
 Store users in db as
-user (pk), password
+id (pk), username, password
