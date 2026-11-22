@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>BBS New User</title>
+</head>
+
+<body>
+    <h1>New User</h1>
+
+    {% if try_again %}
+        <h2 style="color: red;">Name already in use</h2>
+    {% endif %}
+
+    <form>
+        <label for="user">Username: </label><br>
+        <input type="text" id="user" name="user">
+        <br>
+        <label for="paswd">Password: </label><br>
+        <input type="text" id="paswd" name="paswd">
+        <br>
+        <input type="submit">
+    </form>
+
+</body>
+
+</html>

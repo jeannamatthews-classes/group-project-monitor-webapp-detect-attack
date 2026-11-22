@@ -1,6 +1,9 @@
 import psycopg2
+from time import sleep
 
 def init_db():
+    sleep(1) # db is slow to start up
+
     db = psycopg2.connect(
         dbname="bbs",
         user="postgres",
@@ -18,9 +21,13 @@ def init_db():
     cur.execute("""CREATE TABLE IF NOT EXISTS posts 
     (
         id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-        user INTEGER,
+        uid INTEGER,
         content TEXT,
-        FOREIGN KEY (user) REFERENCES users(id)
+        FOREIGN KEY (uid) REFERENCES users(id)
     );""")
 
+    # TODO: temporary remove this
+    cur.execute("INSERT INTO users (username,password) VALUES ('user','user');")
+    db.commit()
+    cur.close()
     return db

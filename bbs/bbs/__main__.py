@@ -26,6 +26,20 @@ def login_page():
     else:
         return render_template("login.html", try_again = False)
 
+@app.route("/enroll")
+def enroll_page():
+    user = request.args.get("user")
+    paswd = request.args.get("paswd")
+    if user is not None and paswd is not None:
+        if users.create_user(user,paswd,db):
+            # TODO: set user cookie
+            return redirect("/")
+        else:
+            # If name is already in use
+            return render_template("enroll.html", try_again = True)
+    else:
+        return render_template("enroll.html", try_again = False)
+
 @app.route("/post")
 def post_page():
     content = request.args.get("content")
@@ -38,4 +52,4 @@ def post_page():
     else:
         return render_template("post.html")
 
-app.run()
+app.run(host="0.0.0.0",port=5000)
