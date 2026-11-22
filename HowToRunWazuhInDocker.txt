@@ -1,0 +1,14 @@
+How to Run Wazuh in Docker for SIEM article
+https://oneuptime.com/blog/post/2026-02-08-how-to-run-wazuh-in-docker-for-siem/view
+
+--------------------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------------------------
+What Wazuh Brings to the Table
+Wazuh started as a fork of OSSEC and has evolved into a comprehensive security platform. It consists of three main components:
+
+    Wazuh Manager - the central server that receives and analyzes data from agents
+    Wazuh Indexer - an OpenSearch-based search engine that stores alerts and events
+    Wazuh Dashboard - a web interface built on OpenSearch Dashboards for visualization
+Agents run on monitored endpoints and send log data, file integrity information, and system inventory to the manager. 
+The manager processes this data against rulesets and generates alerts that get stored in the indexer and displayed on the dashboard.
