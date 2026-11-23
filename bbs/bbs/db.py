@@ -25,9 +25,7 @@ def init_db():
         content TEXT,
         FOREIGN KEY (uid) REFERENCES users(id)
     );""")
-
-    # TODO: temporary remove this
-    cur.execute("INSERT INTO users (username,password) VALUES ('user','user');")
+    
     db.commit()
     cur.close()
     return db

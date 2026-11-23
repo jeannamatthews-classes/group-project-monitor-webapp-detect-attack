@@ -1,3 +1,4 @@
+from flask import make_response
 from flask import Flask, render_template, request, redirect
 import bbs.posts as posts
 import bbs.users as users
@@ -10,7 +11,8 @@ app = Flask(__name__)
 @app.route("/")
 def main_page():
     p = posts.get_posts(db)
-    return render_template("home.html", posts=p)
+    u = users.validate_user_cookie(request,db)
+    return render_template("home.html", posts=p, user=u)
 
 @app.route("/login")
 def login_page():
@@ -18,13 +20,22 @@ def login_page():
     paswd = request.args.get("paswd")
     if user is not None and paswd is not None:
         if users.check_auth(user,paswd,db):
-            # TODO: set user cookie
-            return redirect("/")
+            r = make_response(redirect("/"))
+            r.set_cookie("username",user)
+            r.set_cookie("password",paswd)
+            return r
         else:
             # When user enters invalid credentials
             return render_template("login.html", try_again = True)
     else:
         return render_template("login.html", try_again = False)
+
+@app.route("/logout")
+def logout_page():
+    r = make_response(redirect("/"))
+    r.delete_cookie("username")
+    r.delete_cookie("password")
+    return r
 
 @app.route("/enroll")
 def enroll_page():
@@ -32,8 +43,10 @@ def enroll_page():
     paswd = request.args.get("paswd")
     if user is not None and paswd is not None:
         if users.create_user(user,paswd,db):
-            # TODO: set user cookie
-            return redirect("/")
+            r = make_response(redirect("/"))
+            r.set_cookie("username",user)
+            r.set_cookie("password",paswd)
+            return r
         else:
             # If name is already in use
             return render_template("enroll.html", try_again = True)

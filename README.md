@@ -3,12 +3,18 @@
 Final project for CS 457/557 exploring how to attack and defend a small web application environment.
 
 ## BBS
-The basic buletin board app is implemented. For now just run it with `python -m bbs`.
-I will implement docker soon.
+The basic buletin board app is implemented. Build with `docker compose build` and 
+run with `docker compose up`
 
 ### Database Schema
 Store posts in db as
-id (pk), user (fk -> users.id), content
+id (pk), uid (fk -> users.id), content
 
 Store users in db as
 id (pk), username, password
+
+### Vulnerabilities
+The username and password are stored in a plaintext cookie, which makes MitM attacks
+easy. 
+
+The post creation process is subject to SQL injection.

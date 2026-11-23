@@ -5,6 +5,12 @@
     <title>BBS Posts</title>
 
     <style>
+        #header > p {
+            margin-left: 10px;
+            vertical-align: text-bottom;
+            margin-top: auto;
+            margin-bottom: 0;
+        }
         #header > a {
             margin-left: 10px;
             vertical-align: text-bottom;
@@ -16,8 +22,13 @@
 <body>
     <div id="header" style="display: flex; flex-direction: row;">
         <h1 style="margin-bottom: 0; margin-right: auto;">Message Board</h1>
-        <a href="/login">Login</a>
-        <a href="/enroll">Sign Up</a>
+            {% if user is not none %}
+                <p>(logged in as {{ user }})</p>
+                <a href="/logout">Log Out</a>
+            {% else %}
+                <a href="/login">Log In</a>
+                <a href="/enroll">Sign Up</a>
+            {% endif %}
         <a href="/post">New Post</a>
     </div>
     
