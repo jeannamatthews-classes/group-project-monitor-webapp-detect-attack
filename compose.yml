@@ -1,0 +1,14 @@
+services:
+  bbs:
+    build: ./bbs
+    container_name: bbs
+    ports:
+      - 127.0.0.1:5000:5000
+    depends_on:
+      - postgres
+  postgres:
+    image: postgres
+    container_name: postgres
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=bbs
